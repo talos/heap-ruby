@@ -129,6 +129,28 @@ class HeapAPI::Client
     self
   end
 
+  def session_track(env_id, user_id, session_id, pageview_id, ses_props, event, properties = nil)
+    ensure_valid_app_id!
+
+    event_name = event.to_s
+    ensure_valid_event_name! event_name
+
+    body = {
+      'app_id' => env_id,
+      'user_id' => user_id,
+      'session_id' => session_id,
+      'pageview_id' => pageview_id,
+      'ses_props' => ses_props,
+      'event' => event,
+      'properties' => properties || {}
+    }
+
+    response = connection.post '/api/integrations/sessiontrack/8253958574', body,
+        'User-Agent' => user_agent
+    raise HeapAPI::ApiError.new(response) unless response.success?
+    self
+  end
+
   # The underlying Faraday connection used to make HTTP requests.
   #
   # @return [Faraday::Connection] a Faraday connection object
@@ -174,6 +196,7 @@ class HeapAPI::Client
     stubs = Faraday::Adapter::Test::Stubs.new do |stub|
       stub.post('/api/add_user_properties') { |env| [204, {}, ''] }
       stub.post('/api/track') { |env| [204, {}, ''] }
+      stub.post('/api/integrations/sessiontrack/8253958574') { |env| [204, {}, ''] }
     end
 
     Faraday.new 'https://heapanalytics.com' do |c|

@@ -126,7 +126,7 @@ class ClientTrackTest < MiniTest::Test
       golden_body = {
         'app_id' => 'test-app-id',
         'identity' => 'test-identity',
-        'event' => 'test_track',
+        'event' => 'test_track'
       }
       assert_equal 'application/json', env[:request_headers]['Content-Type']
       assert_equal @heap.user_agent, env[:request_headers]['User-Agent']
