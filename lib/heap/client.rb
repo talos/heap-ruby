@@ -130,8 +130,6 @@ class HeapAPI::Client
   end
 
   def session_track(env_id, user_id, session_id, pageview_id, ses_props, event, properties = nil)
-    ensure_valid_app_id!
-
     event_name = event.to_s
     ensure_valid_event_name! event_name
 
