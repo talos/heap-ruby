@@ -19,7 +19,7 @@ class HeapAPI::Middleware
     # :KLUDGE: assuming 1:1 relation between thread and request lifecycle
     Thread.current[:heap_context] = heap_context
 
-    HeapAPI::Middleware.track 'http_request', 'path' => env['REQUEST_URI']
+    HeapAPI::Middleware.track 'HTTP Request', 'path' => env['REQUEST_URI']
 
     @status, @headers, @response = @app.call(env)
 

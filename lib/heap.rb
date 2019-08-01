@@ -8,6 +8,7 @@ require 'heap/client.rb'
 require 'heap/errors.rb'
 require 'heap/validations.rb'
 require 'heap/middleware.rb'
+require 'heap/instrument_active_record'
 
 # A global instance of {HeapAPI::Client}.
 Heap = HeapAPI::Client.new
