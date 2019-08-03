@@ -1,6 +1,4 @@
-require 'activerecord'
-
-class ActiveRecord::Base
+class ApplicationRecord
   # before_validation
   # after_validation
   # before_save
