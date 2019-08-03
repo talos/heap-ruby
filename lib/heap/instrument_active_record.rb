@@ -1,3 +1,5 @@
+require 'activerecord'
+
 class ActiveRecord::Base
   # before_validation
   # after_validation
