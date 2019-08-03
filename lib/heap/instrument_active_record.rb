@@ -7,7 +7,7 @@ class ApplicationRecord
   # around_create
   # after_create
   # after_save
-  after_commit :after_commit_create, on: :create
+  after_save :after_commit_create, on: :create
   # after_rollback
 
   # before_validation
@@ -18,13 +18,13 @@ class ApplicationRecord
   # around_update
   # after_update
   # after_save
-  after_commit :after_commit_update, on: :update
+  after_save :after_commit_update, on: :update
   # after_rollback
 
   # before_destroy
   # around_destroy
   # after_destroy
-  after_commit :after_commit_destroy, on: :destroy
+  after_destroy :after_commit_destroy, on: :destroy
   # after_rollback
 
   private
